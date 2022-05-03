@@ -45,11 +45,14 @@ export default function App() {
     setGameOver(true);
   }
   return (
-    <LinearGradient colors={[Colors.primary700,Colors.accent500]} style={styles.rootScreen}>
-      <ImageBackground imageStyle={styles.imageBackground} source={require('./assets/images/background.png')} resizeMode="cover" style={styles.rootScreen}>
-        <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+    <>
+      <StatusBar style='light'/>
+      <LinearGradient colors={[Colors.primary700,Colors.accent500]} style={styles.rootScreen}>
+        <ImageBackground imageStyle={styles.imageBackground} source={require('./assets/images/background.png')} resizeMode="cover" style={styles.rootScreen}>
+          <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
 
