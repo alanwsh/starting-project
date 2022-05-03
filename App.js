@@ -12,6 +12,7 @@ import AppLoading from 'expo-app-loading';
 export default function App() {
   const [enteredNumber, setEnteredNumber] = useState();
   const [gameOver, setGameOver] = useState(false);
+  const [roundNumber, setRoundNumber] = useState(0);
 
   const [fontsLoaded] = useFonts({
     'open-sans':require('./assets/fonts/OpenSans-Regular.ttf'),
@@ -20,6 +21,12 @@ export default function App() {
 
   if(!fontsLoaded){
     return <AppLoading />;
+  }
+
+  function startNewGame(){
+    setEnteredNumber(null);
+    setGameOver(false);
+    setRoundNumber(0);
   }
 
   function startGame(inputNumber){
@@ -31,9 +38,10 @@ export default function App() {
     screen = <GameScreen gameIsOver={gameIsOver} inputNumber={enteredNumber}/>;
   }
   if(gameOver){
-    screen = <GameOverScreen />
+    screen = <GameOverScreen inputNumber={enteredNumber} startNewGame={startNewGame} rounds={roundNumber}/>
   }
-  function gameIsOver(){
+  function gameIsOver(roundCount){
+    setRoundNumber(roundCount);
     setGameOver(true);
   }
   return (
